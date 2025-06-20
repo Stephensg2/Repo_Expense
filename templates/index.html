@@ -181,7 +181,7 @@
       <!-- Form Section -->
       <div>
         <form action="/addexpense" method="POST">
-          <label for="name">Expenses:</label>
+          <label for="name">Expense:</label>
           <select name="name" id="expenseSelect" onchange="toggleNewExpense()" required>
             <option value="" disabled selected>Select an expense</option>
             {% for item in items %}
