@@ -1,110 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Expense Data Viewer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 40px;
-      background-color: #f4f7f9;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #3498db;
-      color: white;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 40px;
-      align-items: start;
-    }
-
-    .chart-container {
-      height: 300px;
-      width: 100%;
-    }
-
-    form {
-      background-color: #ffffff;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #6dafee;
-    }
-
-    @media (max-width: 768px) {
-      .section-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8" />
+    <title>Expense Data Viewer</title>
 </head>
 <body>
   <div class="main-container">
@@ -141,10 +40,12 @@
             const ctx = document.getElementById('itemChart').getContext('2d');
             const labels = {{ names | tojson }};
             const data = {{ values | tojson }};
-            const backgroundColors = labels.map((_, i) => {
-              const hue = (i * 137.508) % 360;
-              return `hsl(${hue}, 70%, 60%)`;
-            });
+            const backgroundColors = [
+              '#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff', '#ff9f40',
+              '#66d9e8', '#f67280', '#c06c84', '#6c5ce7', '#55efc4', '#fdcb6e',
+              '#00cec9', '#fab1a0', '#e17055', '#81ecec', '#dfe6e9', '#74b9ff',
+              '#a29bfe', '#ffeaa7'
+            ];
 
             new Chart(ctx, {
               type: 'pie',
@@ -161,8 +62,16 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: 'right' },
+                  legend: {
+                    position: 'right',
+                    labels: {
+                      color: '#000'
+                    }
+                  },
                   tooltip: {
+                    backgroundColor: '#333',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
                     callbacks: {
                       label: function(context) {
                         const label = context.label || '';
@@ -179,27 +88,25 @@
       </div>
 
       <!-- Form Section -->
-      <div>
-        <form action="/addexpense" method="POST">
-          <label for="name">Expense:</label>
-          <select name="name" id="expenseSelect" onchange="toggleNewExpense()" required>
-            <option value="" disabled selected>Select an expense</option>
-            {% for item in items %}
-            <option value="{{ item.name }}">{{ item.name }}</option>
-            {% endfor %}
-            <option value="__new__">New...</option>
-          </select>
+      <form action="/addexpense" method="POST">
+        <label for="name">Expense:</label>
+        <select name="name" id="expenseSelect" onchange="toggleNewExpense()" required>
+          <option value="" disabled selected>Select an expense</option>
+          {% for item in items %}
+          <option value="{{ item.name }}">{{ item.name }}</option>
+          {% endfor %}
+          <option value="__new__">New...</option>
+        </select>
 
-          <div id="newExpenseField" style="display:none;">
-            <label for="new_name">New Expense Name:</label>
-            <input type="text" name="new_name">
-          </div>
+        <div id="newExpenseField" style="display:none;">
+          <label for="new_name">New Expense Name:</label>
+          <input type="text" name="new_name">
+        </div>
 
-          <label for="amount">Amount to Add:</label>
-          <input type="number" step="0.01" name="amount" required>
+        <label for="amount">Amount to Add:</label>
+        <input type="number" step="0.01" name="amount" required>
 
-          <button type="submit">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
 
         <script>
           function toggleNewExpense() {
@@ -208,7 +115,7 @@
             newField.style.display = select.value === '__new__' ? 'block' : 'none';
           }
         </script>
-      </div>
+      </form>
     </div>
   </div>
 </body>
