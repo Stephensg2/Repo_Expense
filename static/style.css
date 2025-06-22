@@ -16,7 +16,7 @@ h1 {
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 1200px;
-    min-width: 1089px;
+    min-width: 989px;
     margin: auto;
     background: #735dc5;
     padding: 30px;
@@ -107,16 +107,17 @@ button:hover {
     background-color: #6dafee;
 }
 
-@media (max-width: 1189px) {
+@media (max-width: 1080px) {
     .section-grid {
         flex-direction: column;
+        font-size: 55px;
     }
 
     body {
-        font-size: 18px;
+        font-size: 55px;
     }
 
     h1, h2, h3, p, td, th {
-        font-size: 1.2em;
+        font-size: 55px;
     }
 }
