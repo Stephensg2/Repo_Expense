@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 40px;
+    padding: 30px;
     background-color: #5688a9;
     color: #333;
+    font-size: 18px;
 }
 
 h1 {
+    font-size: 40px;
     text-align: center;
     color: #ffffff;
 }
@@ -16,7 +18,7 @@ h1 {
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 1200px;
-    min-width: 880px;
+    min-width: 800px;
     margin: auto;
     background: #735dc5;
     padding: 30px;
@@ -39,6 +41,7 @@ th, td {
 }
 
 th {
+    font-size: 25px;
     background-color: #3498db;
     color: white;
 }
@@ -69,6 +72,12 @@ tr:hover {
     gap: 10px;
 }
 
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -88,9 +97,7 @@ input, select {
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
-    min-width: 200px;
     font-size: 20px;
-
 }
 
 button {
@@ -110,14 +117,17 @@ button:hover {
 @media (max-width: 1000px) {
     .section-grid {
         flex-direction: column;
-        font-size: 55px;
     }
 
     body {
-        font-size: 55px;
+        font-size: 20px;
     }
 
     h1, h2, h3, p, td, th {
-        font-size: 55px;
+        font-size: 24px;
+    }
+
+    input, select, button {
+        font-size: 22px;
     }
 }
