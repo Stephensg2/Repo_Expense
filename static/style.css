@@ -16,7 +16,7 @@ h1 {
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 1200px;
-    min-width: 680px;
+    min-width: 1089px;
     margin: auto;
     background: #735dc5;
     padding: 30px;
@@ -107,7 +107,7 @@ button:hover {
     background-color: #6dafee;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1189px) {
     .section-grid {
         flex-direction: column;
     }
