@@ -120,11 +120,11 @@ button:hover {
     }
 
     body {
-        font-size: 20px;
+        font-size: 26px;
     }
 
     h1, h2, h3, p, td, th {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     input, select, button {
