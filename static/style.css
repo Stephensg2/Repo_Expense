@@ -107,7 +107,7 @@ button:hover {
     background-color: #6dafee;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .section-grid {
         flex-direction: column;
         font-size: 55px;
