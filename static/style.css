@@ -16,7 +16,7 @@ h1 {
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 1200px;
-    min-width: 650px;
+    min-width: 680px;
     margin: auto;
     background: #735dc5;
     padding: 30px;
@@ -66,6 +66,7 @@ tr:hover {
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     box-sizing: border-box;
+    gap: 10px;
 }
 
 form {
@@ -88,6 +89,8 @@ input, select {
     border-radius: 6px;
     box-sizing: border-box;
     min-width: 200px;
+    font-size: 20px;
+
 }
 
 button {
@@ -107,5 +110,13 @@ button:hover {
 @media (max-width: 768px) {
     .section-grid {
         flex-direction: column;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    h1, h2, h3, p, td, th {
+        font-size: 1.2em;
     }
 }

@@ -15,4 +15,17 @@ class Expense(Base):
     name = Column(String, unique=True, index=True)
     value = Column(Float, default=0)
 
+    def __repr__(self):
+        return f'Name: {self.name} | Value: {self.value}'
+
 Base.metadata.create_all(bind=engine)
+
+
+if __name__ == '__main__':
+    session = SessionLocal()
+    items = session.query(Expense).all()
+    total = sum(item.value for item in items)
+    names = [item.name for item in items]
+    values = [item.value for item in items]
+    print("test")
+

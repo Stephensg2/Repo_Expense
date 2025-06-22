@@ -2,20 +2,18 @@ import csv
 
 
 class Item:
-    cd_item = []
+    data_item = []
 
     def __init__(self, **kwargs):
         self.name = kwargs.get('name', "N/A")
         self.type = kwargs.get('type', "Chore")
-        self.value = float(kwargs.get('value', 0))
-        Item.cd_item.append(self)
+        Item.data_item.append(self)
 
     def __repr__(self):
-        return f'Name: {self.name} | Type: {self.type} | Value: ${self.value:.2f}'
-
+        return f'Name: {self.name} | Type: {self.type}'
 
 class Chores(Item):
-    cd_chores = []
+    data_chores = []
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -23,7 +21,7 @@ class Chores(Item):
         self.days = {day: float(kwargs.get(day, 0)) for day in [
             'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'
         ]}
-        Chores.cd_chores.append(self)
+        Chores.data_chores.append(self)
 
     @classmethod
     def load_csv(cls, path='chores.csv'):
